@@ -120,4 +120,56 @@ describe("snake game", function() {
 			die();
 		});
 	});
+	
+	describe("fruit", function() {
+		it("should not have fruit on snake", function(){
+			document.getElementById("canvas").width=80;
+			document.getElementById("canvas").height=80;
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+			
+			gamerun();
+			step();
+			expect(score).to.equal(0);
+			die();
+		});
+	});
 });

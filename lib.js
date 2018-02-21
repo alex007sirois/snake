@@ -27,7 +27,6 @@ function init() {
   HEIGHT = $("#canvas").height();
 
   createsnake();
-  newfood();
 
   direction = 0;
   score = 0;
@@ -57,10 +56,19 @@ if ($.browser.mozilla) {
 
 function createsnake() {
   snake = Array();
+  
   var head = Array();
   head.x = WIDTH/2;
   head.y = HEIGHT/2;
+  
+  var tail = Array();
+  head.x = WIDTH/2;
+  head.y = HEIGHT/2;
+  
   snake.push(head);
+  snake.push(tail);
+  
+  newfood();
 }
 
 function collision(n) {
@@ -98,9 +106,12 @@ function newfood() {
   }
   
   matrix=Object.keys(matrix);
+  score++;
   
-  if(!matrix.length)
-	  die();
+  if(!matrix.length){
+	  createsnake();
+	  return;
+  }
 
   var random = Math.floor(Math.random()*matrix.length);
   
@@ -111,8 +122,6 @@ function newfood() {
   food.x = foodValue[0] * dx;
   food.y = foodValue[1] * dy;
   food.r = dr;
-  
-  score++;
 }
 
 function meal(n) {
