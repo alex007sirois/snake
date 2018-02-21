@@ -1,16 +1,25 @@
 var gameStarted = false;
+var gamePaused = false;
 
 $( document ).ready(function() {
     showIntro();
 
     // Start game on spacebar press.
     this.onkeypress = function(e) {
-      if (e.keyCode == 32) { // 32 = Spacebar
-        gamerun();
-      }
+		if (e.keyCode == 32) { // 32 = Spacebar
+			if(!gameStarted)
+				gamerun();
+			else
+				pauseGame();
+		}
     }
 
 });
+
+function pauseGame()
+{
+	gamePaused=!gamePaused;
+}
 
 function gamerun() {
 	if(gameStarted)
@@ -21,6 +30,9 @@ function gamerun() {
 }
 
 function step(){
+	if(gamePaused)
+		return;
+	
   update();
   draw();
 }
@@ -28,7 +40,7 @@ function step(){
 function update() {
   if (!movesnake()) {
     die();
-    showConclusion(size)
+    showConclusion(score)
   }
 }
 

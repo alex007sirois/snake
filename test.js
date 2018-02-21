@@ -58,13 +58,66 @@ describe("snake game", function() {
 		expect(direction).to.equal(2);
 		
 		expect(gameStarted).to.equal(true);
-		
+		die();
     });
   });
   
-  describe("pause", function() {
-	  it("temp", function(){
-		  expect(true).to.equal(true);
-	  });
-  });
+	describe("pause", function() {
+		it("pauseGame should toggle pause bool", function(){
+			gamerun();
+			
+			expect(gamePaused).to.equal(false);
+			step();
+			
+			pauseGame();
+			
+			expect(gamePaused).to.equal(true);
+			
+			pauseGame();
+			
+			expect(gamePaused).to.equal(false);
+			
+			die();
+		});
+		
+		it("step should do nothing while paused", function(){
+			gamerun();
+			
+			expect(gamePaused).to.equal(false);
+			
+			step();
+			pauseGame();
+			
+			expect(gamePaused).to.equal(true);
+			
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			step();
+			
+			expect(gameStarted).to.equal(true);
+			
+			die();
+		});
+	});
 });

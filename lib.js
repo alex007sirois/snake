@@ -13,7 +13,7 @@ var dr = 10;
 var direction;
 
 var snake;
-var size;
+var score;
 
 var turned=false;
 
@@ -30,7 +30,7 @@ function init() {
   newfood();
 
   direction = 0;
-  size = 1;
+  score = 0;
 
   id = setInterval(step, 100);
 }
@@ -89,7 +89,7 @@ function newfood() {
   food.x = randomx * dx;
   food.y = randomy * dy;
   food.r = dr;
-  size = size+1;
+  score++;
 }
 
 function meal(n) {
