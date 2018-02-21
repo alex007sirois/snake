@@ -81,14 +81,37 @@ function collision(n) {
 function newfood() {
   var wcells = WIDTH/dx;
   var hcells = HEIGHT/dy;
+  
+  var matrix={};
+  
+  for(var x=0 ; x<wcells ; x++)
+  {	  
+	  for(var y=0 ; y<hcells ; y++)
+	  {
+		  matrix[x+','+y]=true;
+	  }
+  }
+  
+  for(var i=0 ; snake && i<snake.length ; i++)
+  {
+	  delete matrix[(snake[i].x/dx)+','+snake[i].y/dy];
+  }
+  
+  matrix=Object.keys(matrix);
+  
+  if(!matrix.length)
+	  die();
 
-  var randomx = Math.floor(Math.random()*wcells);
-  var randomy = Math.floor(Math.random()*hcells);
+  var random = Math.floor(Math.random()*matrix.length);
+  
+  var foodValue=matrix[random];
+  foodValue=foodValue.split(',');
 
   food = Array();
-  food.x = randomx * dx;
-  food.y = randomy * dy;
+  food.x = foodValue[0] * dx;
+  food.y = foodValue[1] * dy;
   food.r = dr;
+  
   score++;
 }
 
