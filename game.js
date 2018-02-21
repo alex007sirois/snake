@@ -5,8 +5,7 @@ $( document ).ready(function() {
 
     // Start game on spacebar press.
     this.onkeypress = function(e) {
-      if (gameStarted == false && e.keyCode == 32) { // 32 = Spacebar
-        gameStarted = true;
+      if (e.keyCode == 32) { // 32 = Spacebar
         gamerun();
       }
     }
@@ -14,7 +13,11 @@ $( document ).ready(function() {
 });
 
 function gamerun() {
-  init();
+	if(gameStarted)
+		return;
+	
+	gameStarted = true;
+	init();
 }
 
 function step(){
