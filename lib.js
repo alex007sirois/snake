@@ -15,6 +15,8 @@ var direction;
 var snake;
 var size;
 
+var turned=false;
+
 var food;
 
 var id;
@@ -34,10 +36,11 @@ function init() {
 }
 
 function onKeyDown(evt) {
-  if (evt.keyCode < 37 || evt.keyCode > 40) {
+  if (evt.keyCode < 37 || evt.keyCode > 40 || turned) {
     return;
   }
   newdir = evt.keyCode - 37;
+  turned=true;
 
   // only lateral turns are allowed
   // (that is, no u-turns)
@@ -94,7 +97,7 @@ function meal(n) {
 }
 
 function movesnake() {
-
+	turned=false;
   h = snake[0]; // peek head
 
   // create new head relative to current head
