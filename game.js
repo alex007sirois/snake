@@ -25,6 +25,7 @@ function gamerun() {
 	if(gameStarted)
 		return;
 	
+	gamePaused=false;
 	gameStarted = true;
 	init();
 }

@@ -146,7 +146,9 @@ function die() {
   if (id) {
     clearInterval(id);
   }
-  gameStarted = false;
+  
+	gamePaused = false;
+	gameStarted = false;
 }
 
 function circle(x,y,r) {
