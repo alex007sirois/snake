@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Mocha Tests</title>
+		<link media="all" href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="mocha"></div>
+		<div id="messages"></div>
+		<div id="fixtures"></div>
+		
+		<canvas id="canvas" width="400" height="400" style="background-color:black"></canvas>
+
+		<script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+		<script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+		<script src="http://chaijs.com/chai.js"></script>
+		
+		<script type="text/javascript" src="jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="lib.js"></script>
+		<script type="text/javascript" src="game.js"></script>
+
+		<script>mocha.setup('bdd')</script>
+		
+		<script src="test/test.js"></script>
+		
+		<script>
+			mocha.checkLeaks();
+			mocha.globals(['jQuery']);
+			mocha.run();
+		</script>
+	</body>
+</html>
