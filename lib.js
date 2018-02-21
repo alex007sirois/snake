@@ -34,7 +34,7 @@ function init() {
 }
 
 function onKeyDown(evt) {
-  if (evt.keyCode == 32) {
+  if (evt.keyCode < 37 || evt.keyCode > 40) {
     return;
   }
   newdir = evt.keyCode - 37;
