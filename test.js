@@ -90,30 +90,8 @@ describe("snake game", function() {
 			
 			expect(gamePaused).to.equal(true);
 			
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
-			step();
+			for(var i=0 ; i<200 ; i++)
+				step();
 			
 			expect(gameStarted).to.equal(true);
 			
@@ -126,50 +104,14 @@ describe("snake game", function() {
 			document.getElementById("canvas").width=80;
 			document.getElementById("canvas").height=80;
 			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
-			
-			gamerun();
-			step();
-			expect(score).to.equal(0);
-			die();
+			for(var i=0 ; i<100 ; i++)
+			{
+				gamerun();
+				meal(snake[0]);
+				meal(snake[1]);
+				expect(score).to.equal(0);
+				die();
+			}
 		});
 	});
 });
