@@ -1,5 +1,6 @@
 var gameStarted = false;
 var gamePaused = false;
+var conclusion=false;
 
 $( document ).ready(function() {
     showIntro();
@@ -7,8 +8,13 @@ $( document ).ready(function() {
     // Start game on spacebar press.
     this.onkeypress = function(e) {
 		if (e.keyCode == 32) { // 32 = Spacebar
-			if(!gameStarted)
+		
+			if(!gameStarted && !conclusion)
 				gamerun();
+			else if(conclusion){
+				conclusion = false;
+				Scoreboard.show();
+			}
 			else
 				pauseGame();
 		}
@@ -27,6 +33,7 @@ function gamerun() {
 	
 	gamePaused=false;
 	gameStarted = true;
+	conclusion = false;
 	init();
 }
 
@@ -41,7 +48,8 @@ function step(){
 function update() {
   if (!movesnake()) {
     die();
-    showConclusion(score)
+	Scoreboard.newScore(score);
+    showConclusion(score);
   }
 }
 
@@ -75,5 +83,5 @@ function showConclusion(score) {
     ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2);
     ctx.fillText("score: " + score, canvas.width/2, canvas.height/2-40);
     ctx.font="20px Arial";
-    ctx.fillText("press space to start", canvas.width/2, canvas.height/2+80);
+    ctx.fillText("press space to see scoreboard", canvas.width/2, canvas.height/2+80);
 }

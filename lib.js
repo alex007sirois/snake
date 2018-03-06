@@ -181,6 +181,7 @@ function die() {
   
 	gamePaused = false;
 	gameStarted = false;
+	conclusion = true;
 }
 
 function circle(x,y,r) {

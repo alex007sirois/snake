@@ -4,6 +4,7 @@ describe("snake game", function() {
   describe("movement", function() {
     it("direction should not change when random key is pressed", function() {
 		gamerun();
+		
 		var e = new Event("keydown");
 		e.which=e.keyCode;
 		e.altKey=false;
@@ -96,6 +97,84 @@ describe("snake game", function() {
 			expect(gameStarted).to.equal(true);
 			
 			die();
+		});
+	});
+	
+	describe("Scoreboard", function() {
+		it("should go to conclusion on death", function(){
+			gamerun();
+		
+			var e = new Event("keydown");
+			e.which=e.keyCode;
+			e.altKey=false;
+			e.ctrlKey=true;
+			e.shiftKey=false;
+			e.metaKey=false;
+			e.bubbles=true;
+			e.keyCode=32;
+			
+			expect(gameStarted).to.equal(true);
+			expect(conclusion).to.equal(false);
+			expect(gamePaused).to.equal(false);
+			
+			die();
+			
+			expect(gameStarted).to.equal(false);
+			expect(conclusion).to.equal(true);
+			expect(gamePaused).to.equal(false);
+		});
+		
+		it("should reset to 0 0 0 0 0", function(){
+			Scoreboard.resetScoreboard();			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(0);
+		});
+		
+		it("should add score bigger than the last", function(){
+			Scoreboard.setScoreboard([0,0,0,0,0]);
+			Scoreboard.newScore(1);
+			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(1);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(0);
+			
+			Scoreboard.newScore(5);
+			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(5);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(1);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(0);
+			
+			Scoreboard.newScore(2);
+			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(5);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(2);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(1);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(0);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(0);
+			
+			Scoreboard.newScore(1);
+			Scoreboard.newScore(10);
+			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(10);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(5);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(2);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(1);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(1);
+			
+			Scoreboard.newScore(0);
+			
+			expect(Scoreboard.getScoreboard()[0]).to.equal(10);
+			expect(Scoreboard.getScoreboard()[1]).to.equal(5);
+			expect(Scoreboard.getScoreboard()[2]).to.equal(2);
+			expect(Scoreboard.getScoreboard()[3]).to.equal(1);
+			expect(Scoreboard.getScoreboard()[4]).to.equal(1);
 		});
 	});
 	
